@@ -1,0 +1,102 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyODLVONYdxB8/E6SNQit+Ma",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/matheusbg006/algoritmos2/blob/main/trabalhodealgoritmos.pytnb\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "import random\n",
+        "\n",
+        "def simulador_adivinhacao():\n",
+        "    lista = random.sample(range(1, 101), 20)\n",
+        "    lista.sort()\n",
+        "\n",
+        "    print(\"--- Lista de Números Disponíveis ---\")\n",
+        "    print(lista)\n",
+        "    print(\"-\" * 36)\n",
+        "\n",
+        "    alvo = random.choice(lista)\n",
+        "    print(f\"O computador deve encontrar o número: {alvo}\")\n",
+        "\n",
+        "    inicio = 0\n",
+        "    fim = len(lista) - 1\n",
+        "    passos = 0\n",
+        "    posicao = -1\n",
+        "\n",
+        "    while inicio <= fim:\n",
+        "        passos += 1\n",
+        "        meio = (inicio + fim) // 2\n",
+        "        chute = lista[meio]\n",
+        "\n",
+        "        if chute == alvo:\n",
+        "            posicao = meio\n",
+        "            break\n",
+        "        elif chute > alvo:\n",
+        "            fim = meio - 1\n",
+        "        else:\n",
+        "            inicio = meio + 1\n",
+        "\n",
+        "    #Exibição dos resultados\n",
+        "    if posicao != -1:\n",
+        "        print(f\"\\n✅ Número encontrado!\")\n",
+        "        print(f\"• Número escolhido: {alvo}\")\n",
+        "        print(f\"• Posição na lista (índice): {posicao}\")\n",
+        "        print(f\"• Quantidade de passos necessários: {passos}\")\n",
+        "    else:\n",
+        "        print(\"\\n❌ Número não encontrado.\")\n",
+        "\n",
+        "# Chamar a função para executar\n",
+        "simulador_adivinhacao()"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "G7JrdRJZWnfS",
+        "outputId": "de1971ea-92fe-4f6e-975f-9bdb9e39db10"
+      },
+      "execution_count": 30,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "--- Lista de Números Disponíveis ---\n",
+            "[12, 15, 29, 31, 39, 40, 41, 50, 52, 56, 57, 71, 73, 76, 78, 85, 89, 94, 97, 100]\n",
+            "------------------------------------\n",
+            "O computador deve encontrar o número: 57\n",
+            "\n",
+            "✅ Número encontrado!\n",
+            "• Número escolhido: 57\n",
+            "• Posição na lista (índice): 10\n",
+            "• Quantidade de passos necessários: 4\n"
+          ]
+        }
+      ]
+    }
+  ]
+}
